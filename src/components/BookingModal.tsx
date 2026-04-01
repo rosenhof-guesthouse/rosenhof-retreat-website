@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 
 interface BookingModalProps {
@@ -15,6 +16,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
   const [form, setForm] = useState({
     name: "",
     email: "",
+    inquiryType: "",
     checkIn: "",
     checkOut: "",
     guests: "2",
@@ -23,13 +25,13 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!form.name || !form.email || !form.checkIn) {
+    if (!form.name || !form.email || !form.checkIn || !form.inquiryType) {
       toast.error("Please fill in all required fields.");
       return;
     }
     toast.success("Thank you! Your enquiry has been submitted. We'll be in touch shortly.");
     onOpenChange(false);
-    setForm({ name: "", email: "", checkIn: "", checkOut: "", guests: "2", message: "" });
+    setForm({ name: "", email: "", inquiryType: "", checkIn: "", checkOut: "", guests: "2", message: "" });
   };
 
   return (
@@ -49,6 +51,19 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
               <Label htmlFor="email">Email *</Label>
               <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" />
             </div>
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="inquiryType">Type of Inquiry *</Label>
+            <Select value={form.inquiryType} onValueChange={(value) => setForm({ ...form, inquiryType: value })}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select inquiry type" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="room-booking">Room Booking</SelectItem>
+                <SelectItem value="wedding">Wedding</SelectItem>
+                <SelectItem value="conference">Conference</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="space-y-1.5">

@@ -20,7 +20,7 @@ const Footer = () => (
           <div className="space-y-3 text-sm text-cream/70 font-body">
             <div className="flex items-start gap-2">
               <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
-              <span>18 Market St (Corner of Mark & Bobbert Streets), Paul Roux, 9800</span>
+              <span>18 Market St, Paul Roux, 9800</span>
             </div>
             <div className="flex items-center gap-2">
               <Phone size={16} className="text-gold" />
