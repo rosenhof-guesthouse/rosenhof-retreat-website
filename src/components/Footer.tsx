@@ -11,7 +11,7 @@ const Footer = () => (
           </p>
           <div className="flex items-center gap-2 text-cream/70 text-sm mb-2">
             <PawPrint size={16} className="text-gold" />
-            <span>Pet-Friendly Accommodation</span>
+            <span>Proudly Pet-Friendly — Inquire for details.</span>
           </div>
         </div>
 
