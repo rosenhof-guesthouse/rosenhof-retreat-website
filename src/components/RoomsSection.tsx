@@ -6,16 +6,16 @@ import gardenImg from "@/assets/amenities-garden.jpg";
 
 const rooms = [
   {
-    title: "Honeymoon Suite",
+    title: "The Honeymoon Suite",
     description: "Indulge in romance with a luxurious spa bath, double shower, and four-poster bed draped in fine linens.",
     image: honeymoonImg,
-    alt: "Honeymoon suite with spa bath and four-poster bed",
+    alt: "The Honeymoon Suite with spa bath and four-poster bed",
   },
   {
-    title: "Standard Luxury",
+    title: "Standard Luxury Rooms",
     description: "Generous high ceilings and elegant walk-in showers complement antique furnishings for a restful retreat.",
     image: standardImg,
-    alt: "Standard luxury room with high ceilings",
+    alt: "Standard luxury rooms with high ceilings and walk-in showers",
   },
   {
     title: "Lodge Amenities",
