@@ -21,12 +21,16 @@ const AdminLogin = () => {
     if (!email || !password) { toast.error("Please fill in all fields"); return; }
     setLoading(true);
     const { error } = await signIn(email, password);
-    setLoading(false);
     if (error) {
+      setLoading(false);
       toast.error("Invalid credentials");
-    } else {
-      navigate("/admin");
+      return;
     }
+    // Wait briefly for the admin role check to complete before navigating
+    setTimeout(() => {
+      setLoading(false);
+      navigate("/admin");
+    }, 1000);
   };
 
   const handleSignup = async (e: React.FormEvent) => {
