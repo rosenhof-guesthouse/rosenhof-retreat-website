@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { useLanguage } from "@/hooks/useLanguage";
 
 interface NavbarProps {
   onBookNow: () => void;
@@ -9,6 +10,7 @@ interface NavbarProps {
 const Navbar = ({ onBookNow }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -17,11 +19,11 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
   }, []);
 
   const links = [
-    { label: "Home", href: "#home" },
-    { label: "Rooms", href: "#rooms" },
-    { label: "Dining", href: "#dining" },
-    { label: "Events", href: "#events" },
-    { label: "Contact", href: "#contact" },
+    { label: t("nav.home"), href: "#home" },
+    { label: t("nav.rooms"), href: "#rooms" },
+    { label: t("nav.dining"), href: "#dining" },
+    { label: t("nav.events"), href: "#events" },
+    { label: t("nav.contact"), href: "#contact" },
   ];
 
   const scrollTo = (href: string) => {
@@ -29,6 +31,8 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
     const el = document.querySelector(href);
     el?.scrollIntoView({ behavior: "smooth" });
   };
+
+  const toggleLang = () => setLanguage(language === "en" ? "af" : "en");
 
   return (
     <header
@@ -44,7 +48,7 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
         <nav className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <button
-              key={l.label}
+              key={l.href}
               onClick={() => scrollTo(l.href)}
               className="text-sm font-body tracking-wide text-foreground/80 hover:text-gold transition-colors"
             >
@@ -53,9 +57,15 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
           ))}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3">
+          <button
+            onClick={toggleLang}
+            className="text-xs font-body font-semibold tracking-wide px-3 py-1.5 rounded-full border border-foreground/20 text-foreground/70 hover:border-gold hover:text-gold transition-colors"
+          >
+            {language === "en" ? "AF" : "EN"}
+          </button>
           <Button variant="gold" size="default" onClick={onBookNow}>
-            Book Now
+            {t("nav.bookNow")}
           </Button>
         </div>
 
@@ -69,16 +79,24 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
           <div className="flex flex-col p-4 gap-3">
             {links.map((l) => (
               <button
-                key={l.label}
+                key={l.href}
                 onClick={() => scrollTo(l.href)}
                 className="text-left py-2 text-foreground/80 hover:text-gold font-body"
               >
                 {l.label}
               </button>
             ))}
-            <Button variant="gold" onClick={() => { setMobileOpen(false); onBookNow(); }}>
-              Book Now
-            </Button>
+            <div className="flex items-center gap-3 pt-2">
+              <button
+                onClick={toggleLang}
+                className="text-xs font-body font-semibold tracking-wide px-3 py-1.5 rounded-full border border-foreground/20 text-foreground/70 hover:border-gold hover:text-gold transition-colors"
+              >
+                {language === "en" ? "AF" : "EN"}
+              </button>
+              <Button variant="gold" className="flex-1" onClick={() => { setMobileOpen(false); onBookNow(); }}>
+                {t("nav.bookNow")}
+              </Button>
+            </div>
           </div>
         </div>
       )}
