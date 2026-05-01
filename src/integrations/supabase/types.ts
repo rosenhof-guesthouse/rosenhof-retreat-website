@@ -111,6 +111,7 @@ export type Database = {
           description: string
           display_order: number
           features: Json | null
+          gallery_images: Json
           id: string
           image_url: string | null
           title: string
@@ -122,6 +123,7 @@ export type Database = {
           description?: string
           display_order?: number
           features?: Json | null
+          gallery_images?: Json
           id?: string
           image_url?: string | null
           title: string
@@ -133,6 +135,7 @@ export type Database = {
           description?: string
           display_order?: number
           features?: Json | null
+          gallery_images?: Json
           id?: string
           image_url?: string | null
           title?: string

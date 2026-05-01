@@ -16,6 +16,7 @@ interface Room {
   image_url: string | null;
   alt_text: string | null;
   display_order: number;
+  gallery_images?: string[] | null;
 }
 
 const RoomsPage = () => {
@@ -25,8 +26,11 @@ const RoomsPage = () => {
   const [form, setForm] = useState({ title: "", description: "", image_url: "", alt_text: "", display_order: 0 });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [galleryUrls, setGalleryUrls] = useState<string[]>([]);
+  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
 
   const load = async () => {
     const { data } = await supabase.from("rooms").select("*").order("display_order");
@@ -65,7 +69,10 @@ const RoomsPage = () => {
     setForm({ title: "", description: "", image_url: "", alt_text: "", display_order: rooms.length + 1 });
     setImageFile(null);
     setImagePreview(null);
+    setGalleryUrls([]);
+    setGalleryFiles([]);
     if (fileInputRef.current) fileInputRef.current.value = "";
+    if (galleryInputRef.current) galleryInputRef.current.value = "";
     setDialogOpen(true);
   };
 
@@ -74,8 +81,24 @@ const RoomsPage = () => {
     setForm({ title: room.title, description: room.description, image_url: room.image_url || "", alt_text: room.alt_text || "", display_order: room.display_order });
     setImageFile(null);
     setImagePreview(room.image_url || null);
+    setGalleryUrls(Array.isArray(room.gallery_images) ? room.gallery_images : []);
+    setGalleryFiles([]);
     setDialogOpen(true);
   };
+
+  const handleGallerySelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []);
+    const valid = files.filter((f) => {
+      if (!f.type.startsWith("image/")) { toast.error(`${f.name}: not an image`); return false; }
+      if (f.size > 5 * 1024 * 1024) { toast.error(`${f.name}: over 5MB`); return false; }
+      return true;
+    });
+    setGalleryFiles((prev) => [...prev, ...valid]);
+    if (galleryInputRef.current) galleryInputRef.current.value = "";
+  };
+
+  const removeGalleryUrl = (url: string) => setGalleryUrls((prev) => prev.filter((u) => u !== url));
+  const removeGalleryFile = (idx: number) => setGalleryFiles((prev) => prev.filter((_, i) => i !== idx));
 
   const handleSave = async () => {
     if (!form.title.trim()) { toast.error("Title is required"); return; }
@@ -86,7 +109,13 @@ const RoomsPage = () => {
       if (!url) { setUploading(false); return; }
       imageUrl = url;
     }
-    const payload = { ...form, image_url: imageUrl || null };
+    const newGalleryUrls: string[] = [];
+    for (const f of galleryFiles) {
+      const url = await uploadImage(f);
+      if (url) newGalleryUrls.push(url);
+    }
+    const finalGallery = [...galleryUrls, ...newGalleryUrls];
+    const payload = { ...form, image_url: imageUrl || null, gallery_images: finalGallery };
     if (editing) {
       const { error } = await supabase.from("rooms").update(payload).eq("id", editing.id);
       if (error) { toast.error("Failed to update"); setUploading(false); return; }
@@ -139,7 +168,7 @@ const RoomsPage = () => {
       </div>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{editing ? "Edit Room" : "Add Room"}</DialogTitle>
           </DialogHeader>
@@ -147,7 +176,7 @@ const RoomsPage = () => {
             <div><Label>Title</Label><Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} /></div>
             <div><Label>Description</Label><Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} /></div>
             <div>
-              <Label>Room Image</Label>
+              <Label>Main Room Image</Label>
               <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileSelect} className="hidden" />
               {imagePreview ? (
                 <div className="relative mt-2">
@@ -160,10 +189,39 @@ const RoomsPage = () => {
                   className="mt-2 border-2 border-dashed border-border rounded-md p-8 text-center cursor-pointer hover:border-primary transition-colors"
                 >
                   <Upload size={24} className="mx-auto mb-2 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">Click to upload an image</p>
+                  <p className="text-sm text-muted-foreground">Click to upload main image</p>
                 </div>
               )}
             </div>
+
+            <div>
+              <Label>Gallery Images (additional photos)</Label>
+              <input type="file" accept="image/*" multiple ref={galleryInputRef} onChange={handleGallerySelect} className="hidden" />
+              <div
+                onClick={() => galleryInputRef.current?.click()}
+                className="mt-2 border-2 border-dashed border-border rounded-md p-4 text-center cursor-pointer hover:border-primary transition-colors"
+              >
+                <Upload size={20} className="mx-auto mb-1 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">Click to add gallery photos (multiple allowed)</p>
+              </div>
+              {(galleryUrls.length > 0 || galleryFiles.length > 0) && (
+                <div className="grid grid-cols-3 gap-2 mt-3">
+                  {galleryUrls.map((url) => (
+                    <div key={url} className="relative">
+                      <img src={url} alt="Gallery" className="w-full h-20 object-cover rounded-md" />
+                      <Button variant="destructive" size="icon" className="absolute top-1 right-1 h-6 w-6" onClick={() => removeGalleryUrl(url)}><X size={12} /></Button>
+                    </div>
+                  ))}
+                  {galleryFiles.map((file, idx) => (
+                    <div key={idx} className="relative">
+                      <img src={URL.createObjectURL(file)} alt={file.name} className="w-full h-20 object-cover rounded-md" />
+                      <Button variant="destructive" size="icon" className="absolute top-1 right-1 h-6 w-6" onClick={() => removeGalleryFile(idx)}><X size={12} /></Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <div><Label>Alt Text</Label><Input value={form.alt_text} onChange={(e) => setForm({ ...form, alt_text: e.target.value })} /></div>
             <div><Label>Display Order</Label><Input type="number" value={form.display_order} onChange={(e) => setForm({ ...form, display_order: parseInt(e.target.value) || 0 })} /></div>
             <Button className="w-full" onClick={handleSave} disabled={uploading}>{uploading ? "Uploading…" : editing ? "Save Changes" : "Create Room"}</Button>
