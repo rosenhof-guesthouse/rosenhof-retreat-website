@@ -168,7 +168,7 @@ const RoomsPage = () => {
       </div>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle>{editing ? "Edit Room" : "Add Room"}</DialogTitle>
           </DialogHeader>
@@ -176,7 +176,7 @@ const RoomsPage = () => {
             <div><Label>Title</Label><Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} /></div>
             <div><Label>Description</Label><Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} /></div>
             <div>
-              <Label>Room Image</Label>
+              <Label>Main Room Image</Label>
               <input type="file" accept="image/*" ref={fileInputRef} onChange={handleFileSelect} className="hidden" />
               {imagePreview ? (
                 <div className="relative mt-2">
@@ -189,10 +189,39 @@ const RoomsPage = () => {
                   className="mt-2 border-2 border-dashed border-border rounded-md p-8 text-center cursor-pointer hover:border-primary transition-colors"
                 >
                   <Upload size={24} className="mx-auto mb-2 text-muted-foreground" />
-                  <p className="text-sm text-muted-foreground">Click to upload an image</p>
+                  <p className="text-sm text-muted-foreground">Click to upload main image</p>
                 </div>
               )}
             </div>
+
+            <div>
+              <Label>Gallery Images (additional photos)</Label>
+              <input type="file" accept="image/*" multiple ref={galleryInputRef} onChange={handleGallerySelect} className="hidden" />
+              <div
+                onClick={() => galleryInputRef.current?.click()}
+                className="mt-2 border-2 border-dashed border-border rounded-md p-4 text-center cursor-pointer hover:border-primary transition-colors"
+              >
+                <Upload size={20} className="mx-auto mb-1 text-muted-foreground" />
+                <p className="text-sm text-muted-foreground">Click to add gallery photos (multiple allowed)</p>
+              </div>
+              {(galleryUrls.length > 0 || galleryFiles.length > 0) && (
+                <div className="grid grid-cols-3 gap-2 mt-3">
+                  {galleryUrls.map((url) => (
+                    <div key={url} className="relative">
+                      <img src={url} alt="Gallery" className="w-full h-20 object-cover rounded-md" />
+                      <Button variant="destructive" size="icon" className="absolute top-1 right-1 h-6 w-6" onClick={() => removeGalleryUrl(url)}><X size={12} /></Button>
+                    </div>
+                  ))}
+                  {galleryFiles.map((file, idx) => (
+                    <div key={idx} className="relative">
+                      <img src={URL.createObjectURL(file)} alt={file.name} className="w-full h-20 object-cover rounded-md" />
+                      <Button variant="destructive" size="icon" className="absolute top-1 right-1 h-6 w-6" onClick={() => removeGalleryFile(idx)}><X size={12} /></Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <div><Label>Alt Text</Label><Input value={form.alt_text} onChange={(e) => setForm({ ...form, alt_text: e.target.value })} /></div>
             <div><Label>Display Order</Label><Input type="number" value={form.display_order} onChange={(e) => setForm({ ...form, display_order: parseInt(e.target.value) || 0 })} /></div>
             <Button className="w-full" onClick={handleSave} disabled={uploading}>{uploading ? "Uploading…" : editing ? "Save Changes" : "Create Room"}</Button>
