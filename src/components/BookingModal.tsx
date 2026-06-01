@@ -122,8 +122,21 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
             <Label htmlFor="message">{t("booking.specialRequests")}</Label>
             <Textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder={t("booking.specialPlaceholder")} rows={3} />
           </div>
-          <Button type="submit" variant="hero" size="lg" className="w-full">
-            {t("booking.submit")}
+          {/* Honeypot: hidden from real users, attractive to bots */}
+          <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.website}
+              onChange={(e) => setForm({ ...form, website: e.target.value })}
+            />
+          </div>
+          <Button type="submit" variant="hero" size="lg" className="w-full" disabled={submitting}>
+            {submitting ? "Sending…" : t("booking.submit")}
           </Button>
         </form>
       </DialogContent>
