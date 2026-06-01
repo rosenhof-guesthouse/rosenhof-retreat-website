@@ -17,7 +17,6 @@ interface Room {
   image_url: string | null;
   alt_text: string | null;
   display_order: number;
-  price_from: number | null;
   gallery_images?: string[] | null;
 }
 
@@ -25,7 +24,7 @@ const RoomsPage = () => {
   const [rooms, setRooms] = useState<Room[]>([]);
   const [editing, setEditing] = useState<Room | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [form, setForm] = useState({ title: "", description: "", image_url: "", alt_text: "", display_order: 0, price_from: 350 });
+  const [form, setForm] = useState({ title: "", description: "", image_url: "", alt_text: "", display_order: 0 });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [galleryUrls, setGalleryUrls] = useState<string[]>([]);
@@ -90,7 +89,7 @@ const RoomsPage = () => {
 
   const openEdit = (room: Room) => {
     setEditing(room);
-    setForm({ title: room.title, description: room.description, image_url: room.image_url || "", alt_text: room.alt_text || "", display_order: room.display_order, price_from: room.price_from ?? 350 });
+    setForm({ title: room.title, description: room.description, image_url: room.image_url || "", alt_text: room.alt_text || "", display_order: room.display_order });
     setImageFile(null);
     setImagePreview(room.image_url || null);
     setGalleryUrls(Array.isArray(room.gallery_images) ? room.gallery_images : []);
@@ -260,11 +259,7 @@ const RoomsPage = () => {
 
             <div><Label>Alt Text</Label><Input value={form.alt_text} onChange={(e) => setForm({ ...form, alt_text: e.target.value })} /></div>
             <div><Label>Display Order</Label><Input type="number" value={form.display_order} onChange={(e) => setForm({ ...form, display_order: parseInt(e.target.value) || 0 })} /></div>
-            <div>
-              <Label>Price From (R)</Label>
-              <Input type="number" value={form.price_from} onChange={(e) => setForm({ ...form, price_from: parseInt(e.target.value) || 0 })} />
-              <p className="text-xs text-muted-foreground mt-1">Single person rate. Shown as "From approx. R.../night*"</p>
-            </div>
+            
             <Button className="w-full" onClick={handleSave} disabled={uploading}>{uploading ? "Uploading…" : editing ? "Save Changes" : "Create Room"}</Button>
           </div>
         </DialogContent>
