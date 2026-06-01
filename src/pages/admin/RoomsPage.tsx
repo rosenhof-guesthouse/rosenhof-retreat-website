@@ -167,8 +167,15 @@ const RoomsPage = () => {
     load();
   };
 
+  const hasDemoPhotos = rooms.some((r) => !r.image_url || (r.image_url || "").includes("unsplash") || (r.image_url || "").includes("placeholder"));
+
   return (
     <div>
+      {hasDemoPhotos && (
+        <div className="mb-4 rounded-lg border border-gold/40 bg-gold/10 px-4 py-3 text-sm text-foreground">
+          <strong className="font-display">Reminder:</strong> Some rooms still use placeholder or demo photos. Please upload real photos of each room before launch.
+        </div>
+      )}
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-display font-bold text-foreground">Rooms</h1>
         <Button onClick={openNew}><Plus size={16} className="mr-2" />Add Room</Button>
