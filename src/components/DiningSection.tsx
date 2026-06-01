@@ -21,7 +21,7 @@ const DiningSection = () => {
           <FadeIn>
             <div className="overflow-hidden rounded-lg shadow-xl">
               <img
-                src={restaurantImg}
+                src={content.image_url || restaurantImg}
                 alt="The Rock Restaurant with stone walls and candlelight dining"
                 className="w-full h-[400px] lg:h-[480px] object-cover"
                 loading="lazy"

@@ -1,12 +1,12 @@
 import FadeIn from "@/components/FadeIn";
-import { Wifi, Coffee, TreePine } from "lucide-react";
+import { Wifi, Coffee, TreePine, Tv, ShowerHead, Bath } from "lucide-react";
 import honeymoonImg from "@/assets/room-honeymoon.jpg";
 import standardImg from "@/assets/room-standard.jpg";
 import gardenImg from "@/assets/amenities-garden.jpg";
 import { useRooms } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
 
-const iconMap: Record<string, any> = { Wifi, Coffee, TreePine };
+const iconMap: Record<string, any> = { Wifi, Coffee, TreePine, Tv, ShowerHead, Bath };
 const fallbackImages = [honeymoonImg, standardImg, gardenImg];
 
 const RoomsSection = () => {
@@ -56,6 +56,13 @@ const RoomsSection = () => {
                         })}
                       </div>
                     )}
+                    <div className="mt-4 pt-4 border-t border-border">
+                      <p className="text-gold font-display font-semibold text-lg">
+                        From approx. R{room.price_from ?? 350}/night*
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-0.5">*Prices vary based on dates &amp; availability</p>
+                      <p className="text-xs text-amber-600 font-medium mt-1">⚡ Prices may increase during peak dates &amp; weekends</p>
+                    </div>
                   </div>
                 </div>
               </FadeIn>

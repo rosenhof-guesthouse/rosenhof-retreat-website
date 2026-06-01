@@ -15,7 +15,7 @@ const EventsSection = ({ onBookNow }: EventsSectionProps) => {
   return (
     <section id="events" className="relative py-28 md:py-40 overflow-hidden">
       <img
-        src={weddingImg}
+        src={content.image_url || weddingImg}
         alt="Outdoor wedding ceremony at Rosenhof"
         className="absolute inset-0 w-full h-full object-cover"
         loading="lazy"

@@ -14,7 +14,7 @@ const AboutSection = () => {
           <FadeIn>
             <div className="overflow-hidden rounded-lg shadow-xl">
               <img
-                src={aboutImg}
+                src={content.image_url || aboutImg}
                 alt="Rosenhof interior with antique furniture and curated art"
                 className="w-full h-[400px] lg:h-[520px] object-cover"
                 loading="lazy"
