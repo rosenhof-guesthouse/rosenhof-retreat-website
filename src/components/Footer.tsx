@@ -75,6 +75,31 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Google Maps embed — directions to the lodge */}
+        <div className="mt-12 rounded-lg overflow-hidden border border-cream/15 shadow-lg">
+          <iframe
+            title="Rosenhof Exclusive Country Lodge — Map"
+            src="https://www.google.com/maps?q=18+Market+St,+Paul+Roux,+9800,+South+Africa&output=embed"
+            width="100%"
+            height="280"
+            style={{ border: 0, display: "block" }}
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <div className="bg-forest/80 px-4 py-2 text-center">
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=18+Market+St,+Paul+Roux,+9800,+South+Africa"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream text-sm font-body hover:text-gold transition-colors underline"
+            >
+              Get directions →
+            </a>
+          </div>
+        </div>
+
+
         <div className="border-t border-cream/15 mt-12 pt-8 space-y-3 text-center">
           <div className="flex items-center justify-center gap-4 text-cream/40 text-xs font-body">
             <Link to="/privacy" className="hover:text-gold transition-colors underline">Privacy Policy</Link>
