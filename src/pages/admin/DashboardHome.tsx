@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquare, BedDouble, Clock } from "lucide-react";
+import BackupExport from "@/components/admin/BackupExport";
 
 const DashboardHome = () => {
   const [stats, setStats] = useState({ inquiries: 0, newInquiries: 0, rooms: 0 });
@@ -30,7 +31,10 @@ const DashboardHome = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-display font-bold text-foreground mb-6">Dashboard</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-display font-bold text-foreground">Dashboard</h1>
+        <BackupExport />
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {cards.map((c) => (
           <Card key={c.label}>
