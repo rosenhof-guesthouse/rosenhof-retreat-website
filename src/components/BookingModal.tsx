@@ -24,10 +24,26 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
     checkOut: "",
     guests: "2",
     message: "",
+    website: "", // honeypot — must stay empty
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot: bots fill hidden fields. Silently drop.
+    if (form.website) {
+      toast.success(t("booking.success"));
+      onOpenChange(false);
+      return;
+    }
+    // Simple client-side rate limit: 60s cooldown between submissions per browser.
+    const last = Number(localStorage.getItem("rosenhof_last_inquiry") || 0);
+    const now = Date.now();
+    if (now - last < 60_000) {
+      toast.error("Please wait a moment before sending another enquiry.");
+      return;
+    }
+    if (submitting) return;
     if (!form.name || !form.email || !form.checkIn || !form.inquiryType) {
       toast.error(t("booking.fillFields"));
       return;
