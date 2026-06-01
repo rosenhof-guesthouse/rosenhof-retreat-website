@@ -5,6 +5,7 @@ import standardImg from "@/assets/room-standard.jpg";
 import gardenImg from "@/assets/amenities-garden.jpg";
 import { useRooms } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
+import { useRoomsSchema } from "@/hooks/useRoomsSchema";
 
 const iconMap: Record<string, any> = { Wifi, Coffee, TreePine, Tv, ShowerHead, Bath };
 const fallbackImages = [honeymoonImg, standardImg, gardenImg];
@@ -12,6 +13,7 @@ const fallbackImages = [honeymoonImg, standardImg, gardenImg];
 const RoomsSection = () => {
   const { rooms } = useRooms();
   const { t } = useLanguage();
+  useRoomsSchema(rooms);
 
   const displayRooms = rooms.length > 0 ? rooms : [];
 
