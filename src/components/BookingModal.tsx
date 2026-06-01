@@ -24,15 +24,32 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
     checkOut: "",
     guests: "2",
     message: "",
+    website: "", // honeypot — must stay empty
   });
+  const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Honeypot: bots fill hidden fields. Silently drop.
+    if (form.website) {
+      toast.success(t("booking.success"));
+      onOpenChange(false);
+      return;
+    }
+    // Simple client-side rate limit: 60s cooldown between submissions per browser.
+    const last = Number(localStorage.getItem("rosenhof_last_inquiry") || 0);
+    const now = Date.now();
+    if (now - last < 60_000) {
+      toast.error("Please wait a moment before sending another enquiry.");
+      return;
+    }
+    if (submitting) return;
     if (!form.name || !form.email || !form.checkIn || !form.inquiryType) {
       toast.error(t("booking.fillFields"));
       return;
     }
 
+    setSubmitting(true);
     const { error } = await supabase.from("inquiries").insert({
       name: form.name,
       email: form.email,
@@ -44,13 +61,16 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
     });
 
     if (error) {
+      setSubmitting(false);
       toast.error("Something went wrong. Please try again.");
       return;
     }
 
+    localStorage.setItem("rosenhof_last_inquiry", String(now));
     toast.success(t("booking.success"));
     onOpenChange(false);
-    setForm({ name: "", email: "", inquiryType: "", checkIn: "", checkOut: "", guests: "2", message: "" });
+    setForm({ name: "", email: "", inquiryType: "", checkIn: "", checkOut: "", guests: "2", message: "", website: "" });
+    setSubmitting(false);
   };
 
   return (
@@ -102,8 +122,21 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
             <Label htmlFor="message">{t("booking.specialRequests")}</Label>
             <Textarea id="message" value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} placeholder={t("booking.specialPlaceholder")} rows={3} />
           </div>
-          <Button type="submit" variant="hero" size="lg" className="w-full">
-            {t("booking.submit")}
+          {/* Honeypot: hidden from real users, attractive to bots */}
+          <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+            <label htmlFor="website">Website</label>
+            <input
+              id="website"
+              name="website"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              value={form.website}
+              onChange={(e) => setForm({ ...form, website: e.target.value })}
+            />
+          </div>
+          <Button type="submit" variant="hero" size="lg" className="w-full" disabled={submitting}>
+            {submitting ? "Sending…" : t("booking.submit")}
           </Button>
         </form>
       </DialogContent>
