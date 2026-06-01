@@ -49,6 +49,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
       return;
     }
 
+    setSubmitting(true);
     const { error } = await supabase.from("inquiries").insert({
       name: form.name,
       email: form.email,
@@ -60,13 +61,16 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
     });
 
     if (error) {
+      setSubmitting(false);
       toast.error("Something went wrong. Please try again.");
       return;
     }
 
+    localStorage.setItem("rosenhof_last_inquiry", String(now));
     toast.success(t("booking.success"));
     onOpenChange(false);
-    setForm({ name: "", email: "", inquiryType: "", checkIn: "", checkOut: "", guests: "2", message: "" });
+    setForm({ name: "", email: "", inquiryType: "", checkIn: "", checkOut: "", guests: "2", message: "", website: "" });
+    setSubmitting(false);
   };
 
   return (
