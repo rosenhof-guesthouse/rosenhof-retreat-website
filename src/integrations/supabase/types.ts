@@ -114,7 +114,6 @@ export type Database = {
           gallery_images: Json
           id: string
           image_url: string | null
-          price_from: number | null
           title: string
           updated_at: string
         }
@@ -127,7 +126,6 @@ export type Database = {
           gallery_images?: Json
           id?: string
           image_url?: string | null
-          price_from?: number | null
           title: string
           updated_at?: string
         }
@@ -140,7 +138,6 @@ export type Database = {
           gallery_images?: Json
           id?: string
           image_url?: string | null
-          price_from?: number | null
           title?: string
           updated_at?: string
         }
