@@ -62,7 +62,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
 
     if (error) {
       setSubmitting(false);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("booking.error"));
       return;
     }
 
