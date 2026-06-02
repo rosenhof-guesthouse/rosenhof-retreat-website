@@ -102,9 +102,9 @@ const Footer = () => {
 
         <div className="border-t border-cream/15 mt-12 pt-8 space-y-3 text-center">
           <div className="flex items-center justify-center gap-4 text-cream/40 text-xs font-body">
-            <Link to="/privacy" className="hover:text-gold transition-colors underline">Privacy Policy</Link>
+            <Link to="/privacy" className="hover:text-gold transition-colors underline">{t("footer.privacy")}</Link>
             <span>·</span>
-            <Link to="/terms" className="hover:text-gold transition-colors underline">Terms of Service</Link>
+            <Link to="/terms" className="hover:text-gold transition-colors underline">{t("footer.terms")}</Link>
           </div>
           <p className="text-cream/50 text-xs font-body">
             &copy; {new Date().getFullYear()} Rosenhof Exclusive Country Lodge. {t("footer.rights")}
@@ -116,7 +116,7 @@ const Footer = () => {
             className="inline-flex items-center gap-1.5 text-cream/40 text-xs font-body hover:text-gold transition-colors underline"
           >
             <WhatsAppIcon />
-            Designed &amp; developed by Astar Technologies (PTY) Ltd
+            {t("footer.designedBy")}
           </a>
         </div>
       </div>
