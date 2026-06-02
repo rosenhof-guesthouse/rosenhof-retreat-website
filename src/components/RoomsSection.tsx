@@ -65,8 +65,8 @@ const RoomsSection = () => {
                       <p className="text-gold font-display font-semibold text-lg">
                         From approx. R{room.price_from ?? 350}/night*
                       </p>
-                      <p className="text-xs text-muted-foreground mt-0.5">*Prices vary based on dates &amp; availability</p>
-                      <p className="text-xs text-amber-600 font-medium mt-1">⚡ Prices may increase during peak dates &amp; weekends</p>
+                      <p className="text-xs text-muted-foreground mt-0.5">{t("rooms.priceNote")}</p>
+                      <p className="text-xs text-amber-600 font-medium mt-1">{t("rooms.peakNote")}</p>
                     </div>
                     <Button
                       variant="gold"
@@ -76,7 +76,7 @@ const RoomsSection = () => {
                         window.open(NIGHTSBRIDGE_URL, "_blank", "noopener,noreferrer");
                       }}
                     >
-                      Book This Room
+                      {t("rooms.bookRoom")}
                     </Button>
                   </div>
                 </div>

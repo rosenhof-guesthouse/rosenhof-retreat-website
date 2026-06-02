@@ -36,7 +36,7 @@ const DiningSection = () => {
               {content.tag || t("dining.tag")}
             </p>
             <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight mb-6">
-              {content.headline || "Local Flavours at The Rock"}
+              {content.headline || t("dining.headline")}
             </h2>
             <div className="w-16 h-0.5 bg-gold mb-8" />
             <p className="text-muted-foreground font-body text-lg leading-relaxed mb-8">
@@ -48,7 +48,7 @@ const DiningSection = () => {
                   )
                 }} />
               ) : (
-                <>Our on-site <strong className="text-foreground">Rock Restaurant & Bar</strong> serves hearty, locally-inspired cuisine.</>
+                <>{t("dining.description")}</>
               )}
             </p>
             <div className="flex flex-wrap gap-6">

@@ -33,10 +33,10 @@ const AboutSection = () => {
             </h2>
             <div className="w-16 h-0.5 bg-gold mb-8" />
             <p className="text-muted-foreground font-body text-lg leading-relaxed mb-6">
-              {content.paragraph_1 || "Nestled in the heart of the Eastern Free State, Rosenhof is a beautifully restored century-old building that preserves the elegance of a bygone era."}
+              {content.paragraph_1 || t("about.paragraph_1")}
             </p>
             <p className="text-muted-foreground font-body text-lg leading-relaxed">
-              {content.paragraph_2 || "Every room is adorned with hand-picked antiques and curated art, transporting guests to a world where craftsmanship and attention to detail were the hallmarks of true hospitality."}
+              {content.paragraph_2 || t("about.paragraph_2")}
             </p>
           </FadeIn>
         </div>

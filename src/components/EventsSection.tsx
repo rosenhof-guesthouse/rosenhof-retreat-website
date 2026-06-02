@@ -30,11 +30,11 @@ const EventsSection = ({ onBookNow }: EventsSectionProps) => {
             {content.tag || t("events.tag")}
           </p>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold text-cream leading-tight mb-6">
-            {content.headline || "Celebrate with Us"}
+            {content.headline || t("events.headline")}
           </h2>
           <div className="w-16 h-0.5 bg-gold mx-auto mb-8" />
           <p className="text-cream/85 font-body text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-            {content.description || "From intimate weddings in our enchanting gardens to corporate conferences for up to 55 delegates, Rosenhof provides a unique heritage setting for life's most important occasions."}
+            {content.description || t("events.description")}
           </p>
           <Button
             variant="heroOutline"

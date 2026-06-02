@@ -7,31 +7,29 @@ const platforms = [
   {
     name: "Google",
     url: "https://www.google.com/search?q=Rosenhof+Exclusive+Country+Lodge+Paul+Roux",
-    blurb: "Read verified Google reviews from past guests.",
+    blurbKey: "reviews.google",
   },
   {
     name: "Lekkeslaap",
     url: "https://www.lekkeslaap.co.za/akkommodasie/rosenhof-exclusive-country-lodge",
-    blurb: "South Africa's trusted travel community.",
+    blurbKey: "reviews.lekkeslaap",
   },
   {
     name: "TripAdvisor",
     url: "https://www.tripadvisor.com/Search?q=Rosenhof+Paul+Roux",
-    blurb: "International traveller reviews and photos.",
+    blurbKey: "reviews.tripadvisor",
   },
 ];
 
 const ReviewsSection = () => {
-  const { language } = useLanguage();
-  const headline = language === "af" ? "Wat Gaste Sê" : "What Guests Say";
-  const tag = language === "af" ? "Resensies" : "Reviews";
+  const { t } = useLanguage();
 
   return (
     <section className="py-20 md:py-28 bg-background">
       <div className="container mx-auto px-4">
         <FadeIn className="text-center mb-12">
-          <p className="text-sm tracking-[0.25em] uppercase text-gold font-body mb-3">{tag}</p>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground">{headline}</h2>
+          <p className="text-sm tracking-[0.25em] uppercase text-gold font-body mb-3">{t("reviews.tag")}</p>
+          <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground">{t("reviews.headline")}</h2>
           <div className="w-16 h-0.5 bg-gold mx-auto mt-6" />
         </FadeIn>
 
@@ -54,7 +52,7 @@ const ReviewsSection = () => {
                   {p.name}
                   <ExternalLink size={14} className="text-muted-foreground" />
                 </h3>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed">{p.blurb}</p>
+                <p className="text-sm text-muted-foreground font-body leading-relaxed">{t(p.blurbKey)}</p>
               </a>
             </FadeIn>
           ))}
