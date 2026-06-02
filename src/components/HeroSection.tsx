@@ -11,7 +11,7 @@ interface HeroSectionProps {
 
 const HeroSection = ({ onBookNow, onEnquire }: HeroSectionProps) => {
   const { content } = useSiteContent("hero");
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const scrollToRooms = () => {
     document.querySelector("#rooms")?.scrollIntoView({ behavior: "smooth" });
