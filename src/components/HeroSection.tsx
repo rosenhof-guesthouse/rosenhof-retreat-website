@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import heroImg from "@/assets/hero-lodge.jpg";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
+import { tx } from "@/lib/contentTranslations";
 
 interface HeroSectionProps {
   onBookNow: () => void;
