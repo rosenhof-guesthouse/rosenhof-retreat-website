@@ -64,6 +64,12 @@ const translations: Record<string, Record<Language, string>> = {
   "footer.contact": { en: "Contact", af: "Kontak" },
   "footer.followUs": { en: "Follow Us", af: "Volg Ons" },
   "footer.rights": { en: "All rights reserved.", af: "Alle regte voorbehou." },
+  "footer.petPolicy": { en: "Proudly Pet-Friendly — Inquire for details.", af: "Trots Troeteldier-vriendelik — Doen navraag vir besonderhede." },
+  "footer.getDirections": { en: "Get directions →", af: "Kry aanwysings →" },
+  "footer.mapTitle": { en: "Rosenhof Exclusive Country Lodge — Map", af: "Rosenhof Eksklusiewe Plaasherberg — Kaart" },
+  "footer.privacy": { en: "Privacy Policy", af: "Privaatheidsbeleid" },
+  "footer.terms": { en: "Terms of Service", af: "Diensvoorwaardes" },
+  "footer.designedBy": { en: "Designed & developed by Astar Technologies (PTY) Ltd", af: "Ontwerp & ontwikkel deur Astar Technologies (EDMS) Bpk" },
 
   // Booking Modal
   "booking.title": { en: "Book Your Stay", af: "Bespreek Jou Verblyf" },
