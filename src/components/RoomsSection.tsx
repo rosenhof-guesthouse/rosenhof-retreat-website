@@ -63,7 +63,7 @@ const RoomsSection = () => {
                     )}
                     <div className="mt-4 pt-4 border-t border-border">
                       <p className="text-gold font-display font-semibold text-lg">
-                        From approx. R{room.price_from ?? 350}/night*
+                        {t("rooms.priceFrom").replace("{n}", String(room.price_from ?? 350))}
                       </p>
                       <p className="text-xs text-muted-foreground mt-0.5">{t("rooms.priceNote")}</p>
                       <p className="text-xs text-amber-600 font-medium mt-1">{t("rooms.peakNote")}</p>
