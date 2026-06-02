@@ -12,7 +12,7 @@ const WhatsAppIcon = () => (
 
 const Footer = () => {
   const { content } = useSiteContent("footer");
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <footer id="contact" className="bg-forest text-cream py-16">
