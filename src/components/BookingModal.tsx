@@ -40,7 +40,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
     const last = Number(localStorage.getItem("rosenhof_last_inquiry") || 0);
     const now = Date.now();
     if (now - last < 60_000) {
-      toast.error("Please wait a moment before sending another enquiry.");
+      toast.error(t("booking.rateLimited"));
       return;
     }
     if (submitting) return;
