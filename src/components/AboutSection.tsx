@@ -2,10 +2,11 @@ import FadeIn from "@/components/FadeIn";
 import aboutImg from "@/assets/about-interior.jpg";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
+import { tx } from "@/lib/contentTranslations";
 
 const AboutSection = () => {
   const { content } = useSiteContent("about");
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section className="py-20 md:py-32 bg-background">
