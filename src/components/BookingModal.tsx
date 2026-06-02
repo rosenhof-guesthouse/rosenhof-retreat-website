@@ -84,11 +84,11 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <Label htmlFor="name">{t("booking.name")} *</Label>
-              <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="John Smith" />
+              <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder={t("booking.namePlaceholder")} />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="email">{t("booking.email")} *</Label>
-              <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" />
+              <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder={t("booking.emailPlaceholder")} />
             </div>
           </div>
           <div className="space-y-1.5">
