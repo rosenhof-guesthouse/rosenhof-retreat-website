@@ -16,7 +16,7 @@ const fallbackImages = [honeymoonImg, standardImg, gardenImg];
 
 const RoomsSection = () => {
   const { rooms } = useRooms();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   useRoomsSchema(rooms);
 
   const displayRooms = rooms.length > 0 ? rooms : [];
