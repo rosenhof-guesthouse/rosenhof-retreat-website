@@ -16,10 +16,16 @@ const translations: Record<string, Record<Language, string>> = {
   "nav.events": { en: "Events", af: "Geleenthede" },
   "nav.contact": { en: "Contact", af: "Kontak" },
   "nav.bookNow": { en: "Book Now", af: "Bespreek Nou" },
+  "nav.enquire": { en: "Enquire", af: "Navraag" },
+  "nav.switchToAf": { en: "Switch to Afrikaans", af: "Skakel oor na Afrikaans" },
+  "nav.switchToEn": { en: "Switch to English", af: "Skakel oor na Engels" },
+
+
 
   // Hero
   "hero.viewRooms": { en: "View Our Rooms", af: "Bekyk Ons Kamers" },
   "hero.bookStay": { en: "Book Your Stay", af: "Bespreek Jou Verblyf" },
+  "hero.sendEnquiry": { en: "Send Enquiry", af: "Stuur Navraag" },
 
   // About
   "about.tag": { en: "Our Story", af: "Ons Storie" },
@@ -33,6 +39,7 @@ const translations: Record<string, Record<Language, string>> = {
   "rooms.bookRoom": { en: "Book This Room", af: "Bespreek Hierdie Kamer" },
   "rooms.priceNote": { en: "*Prices vary based on dates & availability", af: "*Pryse wissel na gelang van datums en beskikbaarheid" },
   "rooms.peakNote": { en: "⚡ Prices may increase during peak dates & weekends", af: "⚡ Pryse kan tydens spitstye en naweke styg" },
+  "rooms.priceFrom": { en: "From approx. R{n}/night*", af: "Vanaf ongeveer R{n}/nag*" },
 
   // Dining
   "dining.tag": { en: "Dining & Leisure", af: "Eetplek & Ontspanning" },
@@ -57,6 +64,12 @@ const translations: Record<string, Record<Language, string>> = {
   "footer.contact": { en: "Contact", af: "Kontak" },
   "footer.followUs": { en: "Follow Us", af: "Volg Ons" },
   "footer.rights": { en: "All rights reserved.", af: "Alle regte voorbehou." },
+  "footer.petPolicy": { en: "Proudly Pet-Friendly — Inquire for details.", af: "Trots Troeteldier-vriendelik — Doen navraag vir besonderhede." },
+  "footer.getDirections": { en: "Get directions →", af: "Kry aanwysings →" },
+  "footer.mapTitle": { en: "Rosenhof Exclusive Country Lodge — Map", af: "Rosenhof Eksklusiewe Plaasherberg — Kaart" },
+  "footer.privacy": { en: "Privacy Policy", af: "Privaatheidsbeleid" },
+  "footer.terms": { en: "Terms of Service", af: "Diensvoorwaardes" },
+  "footer.designedBy": { en: "Designed & developed by Astar Technologies (PTY) Ltd", af: "Ontwerp & ontwikkel deur Astar Technologies (EDMS) Bpk" },
 
   // Booking Modal
   "booking.title": { en: "Book Your Stay", af: "Bespreek Jou Verblyf" },
@@ -76,6 +89,17 @@ const translations: Record<string, Record<Language, string>> = {
   "booking.submit": { en: "Submit Enquiry", af: "Dien Navraag In" },
   "booking.fillFields": { en: "Please fill in all required fields.", af: "Vul asseblief al die verpligte velde in." },
   "booking.success": { en: "Thank you! Your enquiry has been submitted. We'll be in touch shortly.", af: "Dankie! Jou navraag is ingedien. Ons sal binnekort in aanraking wees." },
+  "booking.rateLimited": { en: "Please wait a moment before sending another enquiry.", af: "Wag asseblief 'n oomblik voordat jy weer 'n navraag stuur." },
+  "booking.error": { en: "Something went wrong. Please try again.", af: "Iets het verkeerd geloop. Probeer asseblief weer." },
+  "booking.sending": { en: "Sending…", af: "Stuur tans…" },
+  "booking.namePlaceholder": { en: "Jane Smith", af: "Jana Smith" },
+  "booking.emailPlaceholder": { en: "jane@example.com", af: "jana@voorbeeld.com" },
+
+  // 404
+  "notFound.title": { en: "This path leads nowhere", af: "Hierdie pad lei nêrens heen" },
+  "notFound.body": { en: "The page you were looking for couldn't be found at Rosenhof.", af: "Die bladsy waarvoor jy soek, kon nie by Rosenhof gevind word nie." },
+  "notFound.goBack": { en: "Go Back", af: "Gaan Terug" },
+  "notFound.return": { en: "Return to Lodge", af: "Keer Terug na Herberg" },
 
   // Amenity icons
   "amenity.wifi": { en: "Free WiFi", af: "Gratis WiFi" },

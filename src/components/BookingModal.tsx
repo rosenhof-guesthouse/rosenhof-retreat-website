@@ -40,7 +40,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
     const last = Number(localStorage.getItem("rosenhof_last_inquiry") || 0);
     const now = Date.now();
     if (now - last < 60_000) {
-      toast.error("Please wait a moment before sending another enquiry.");
+      toast.error(t("booking.rateLimited"));
       return;
     }
     if (submitting) return;
@@ -62,7 +62,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
 
     if (error) {
       setSubmitting(false);
-      toast.error("Something went wrong. Please try again.");
+      toast.error(t("booking.error"));
       return;
     }
 
@@ -84,11 +84,11 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-1.5">
               <Label htmlFor="name">{t("booking.name")} *</Label>
-              <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="John Smith" />
+              <Input id="name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder={t("booking.namePlaceholder")} />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="email">{t("booking.email")} *</Label>
-              <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder="john@example.com" />
+              <Input id="email" type="email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} placeholder={t("booking.emailPlaceholder")} />
             </div>
           </div>
           <div className="space-y-1.5">
@@ -136,7 +136,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
             />
           </div>
           <Button type="submit" variant="hero" size="lg" className="w-full" disabled={submitting}>
-            {submitting ? "Sending…" : t("booking.submit")}
+            {submitting ? t("booking.sending") : t("booking.submit")}
           </Button>
         </form>
       </DialogContent>

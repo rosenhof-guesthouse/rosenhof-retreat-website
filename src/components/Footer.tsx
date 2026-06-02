@@ -24,7 +24,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-2 text-cream/70 text-sm mb-2">
               <PawPrint size={16} className="text-gold" />
-              <span>{content.pet_policy || "Proudly Pet-Friendly — Inquire for details."}</span>
+              <span>{content.pet_policy || t("footer.petPolicy")}</span>
             </div>
           </div>
 
@@ -78,7 +78,7 @@ const Footer = () => {
         {/* Google Maps embed — directions to the lodge */}
         <div className="mt-12 rounded-lg overflow-hidden border border-cream/15 shadow-lg">
           <iframe
-            title="Rosenhof Exclusive Country Lodge — Map"
+            title={t("footer.mapTitle")}
             src="https://www.google.com/maps?q=18+Market+St,+Paul+Roux,+9800,+South+Africa&output=embed"
             width="100%"
             height="280"
@@ -94,7 +94,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-cream text-sm font-body hover:text-gold transition-colors underline"
             >
-              Get directions →
+              {t("footer.getDirections")}
             </a>
           </div>
         </div>
@@ -102,9 +102,9 @@ const Footer = () => {
 
         <div className="border-t border-cream/15 mt-12 pt-8 space-y-3 text-center">
           <div className="flex items-center justify-center gap-4 text-cream/40 text-xs font-body">
-            <Link to="/privacy" className="hover:text-gold transition-colors underline">Privacy Policy</Link>
+            <Link to="/privacy" className="hover:text-gold transition-colors underline">{t("footer.privacy")}</Link>
             <span>·</span>
-            <Link to="/terms" className="hover:text-gold transition-colors underline">Terms of Service</Link>
+            <Link to="/terms" className="hover:text-gold transition-colors underline">{t("footer.terms")}</Link>
           </div>
           <p className="text-cream/50 text-xs font-body">
             &copy; {new Date().getFullYear()} Rosenhof Exclusive Country Lodge. {t("footer.rights")}
@@ -116,7 +116,7 @@ const Footer = () => {
             className="inline-flex items-center gap-1.5 text-cream/40 text-xs font-body hover:text-gold transition-colors underline"
           >
             <WhatsAppIcon />
-            Designed &amp; developed by Astar Technologies (PTY) Ltd
+            {t("footer.designedBy")}
           </a>
         </div>
       </div>
