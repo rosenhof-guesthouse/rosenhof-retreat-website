@@ -1,13 +1,15 @@
 import { useState, useEffect } from "react";
+import { Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/hooks/useLanguage";
 
 interface NavbarProps {
   onBookNow: () => void;
+  onEnquire: () => void;
 }
 
-const Navbar = ({ onBookNow }: NavbarProps) => {
+const Navbar = ({ onBookNow, onEnquire }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { language, setLanguage, t } = useLanguage();
@@ -60,10 +62,15 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleLang}
-            className="text-xs font-body font-semibold tracking-wide px-3 py-1.5 rounded-full border border-foreground/20 text-foreground/70 hover:border-gold hover:text-gold transition-colors"
+            className="flex items-center gap-1.5 text-xs font-body font-semibold tracking-wide px-3 py-1.5 rounded-full border border-foreground/20 text-foreground/70 hover:border-gold hover:text-gold transition-colors"
+            title={language === "en" ? "Switch to Afrikaans" : "Switch to English"}
           >
-            {language === "en" ? "AF" : "EN"}
+            <Globe size={13} />
+            {language === "en" ? "Afrikaans" : "English"}
           </button>
+          <Button variant="outline" size="default" onClick={onEnquire} className="border-foreground/30 text-foreground/80 hover:border-gold hover:text-gold">
+            Enquire
+          </Button>
           <Button variant="gold" size="default" onClick={onBookNow}>
             {t("nav.bookNow")}
           </Button>
@@ -89,10 +96,14 @@ const Navbar = ({ onBookNow }: NavbarProps) => {
             <div className="flex items-center gap-3 pt-2">
               <button
                 onClick={toggleLang}
-                className="text-xs font-body font-semibold tracking-wide px-3 py-1.5 rounded-full border border-foreground/20 text-foreground/70 hover:border-gold hover:text-gold transition-colors"
+                className="flex items-center gap-1.5 text-xs font-body font-semibold tracking-wide px-3 py-1.5 rounded-full border border-foreground/20 text-foreground/70 hover:border-gold hover:text-gold transition-colors"
               >
-                {language === "en" ? "AF" : "EN"}
+                <Globe size={13} />
+                {language === "en" ? "Afrikaans" : "English"}
               </button>
+              <Button variant="outline" className="flex-1 border-foreground/30" onClick={() => { setMobileOpen(false); onEnquire(); }}>
+                Enquire
+              </Button>
               <Button variant="gold" className="flex-1" onClick={() => { setMobileOpen(false); onBookNow(); }}>
                 {t("nav.bookNow")}
               </Button>
