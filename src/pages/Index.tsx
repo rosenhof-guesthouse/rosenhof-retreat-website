@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import StickyMobileActions from "@/components/StickyMobileActions";
 import { track } from "@/lib/track";
 
-const NIGHTSBRIDGE_URL = "https://book.nightsbridge.com/34659";
+const NIGHTSBRIDGE_URL = "https://book.nightsbridge.com/39887";
 
 const openNightsbridge = () => {
   track("book_now_click", { destination: "nightsbridge" });
