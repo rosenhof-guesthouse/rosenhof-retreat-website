@@ -25,6 +25,7 @@ const translations: Record<string, Record<Language, string>> = {
   // Hero
   "hero.viewRooms": { en: "View Our Rooms", af: "Bekyk Ons Kamers" },
   "hero.bookStay": { en: "Book Your Stay", af: "Bespreek Jou Verblyf" },
+  "hero.sendEnquiry": { en: "Send Enquiry", af: "Stuur Navraag" },
 
   // About
   "about.tag": { en: "Our Story", af: "Ons Storie" },
