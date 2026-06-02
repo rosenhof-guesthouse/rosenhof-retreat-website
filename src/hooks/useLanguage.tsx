@@ -39,6 +39,7 @@ const translations: Record<string, Record<Language, string>> = {
   "rooms.bookRoom": { en: "Book This Room", af: "Bespreek Hierdie Kamer" },
   "rooms.priceNote": { en: "*Prices vary based on dates & availability", af: "*Pryse wissel na gelang van datums en beskikbaarheid" },
   "rooms.peakNote": { en: "⚡ Prices may increase during peak dates & weekends", af: "⚡ Pryse kan tydens spitstye en naweke styg" },
+  "rooms.priceFrom": { en: "From approx. R{n}/night*", af: "Vanaf ongeveer R{n}/nag*" },
 
   // Dining
   "dining.tag": { en: "Dining & Leisure", af: "Eetplek & Ontspanning" },
