@@ -34,16 +34,16 @@ const DiningSection = () => {
 
           <FadeIn delay={200}>
             <p className="text-sm tracking-[0.25em] uppercase text-gold font-body mb-3">
-              {content.tag || t("dining.tag")}
+              {tx(content.tag, language) || t("dining.tag")}
             </p>
             <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight mb-6">
-              {content.headline || t("dining.headline")}
+              {tx(content.headline, language) || t("dining.headline")}
             </h2>
             <div className="w-16 h-0.5 bg-gold mb-8" />
             <p className="text-muted-foreground font-body text-lg leading-relaxed mb-8">
               {content.description ? (
                 <span dangerouslySetInnerHTML={{
-                  __html: content.description.replace(
+                  __html: tx(content.description, language).replace(
                     "Rock Restaurant & Bar",
                     '<strong class="text-foreground">Rock Restaurant & Bar</strong>'
                   )
