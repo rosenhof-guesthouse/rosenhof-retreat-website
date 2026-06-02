@@ -43,7 +43,7 @@ const Navbar = ({ onBookNow, onEnquire }: NavbarProps) => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
-        <a href="#home" onClick={() => scrollTo("#home")} className="font-display text-xl md:text-2xl font-bold tracking-wide text-foreground">
+        <a href="#home" onClick={() => scrollTo("#home")} className={`font-display text-xl md:text-2xl font-bold tracking-wide transition-colors ${scrolled ? "text-foreground" : "text-cream"}`}>
           Rosenhof
         </a>
 
@@ -52,7 +52,7 @@ const Navbar = ({ onBookNow, onEnquire }: NavbarProps) => {
             <button
               key={l.href}
               onClick={() => scrollTo(l.href)}
-              className="text-sm font-body tracking-wide text-foreground/80 hover:text-gold transition-colors"
+              className={`text-sm font-body tracking-wide hover:text-gold transition-colors ${scrolled ? "text-foreground/80" : "text-cream/90"}`}
             >
               {l.label}
             </button>
@@ -62,22 +62,22 @@ const Navbar = ({ onBookNow, onEnquire }: NavbarProps) => {
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleLang}
-            className="flex items-center gap-1.5 text-xs font-body font-semibold tracking-wide px-3 py-1.5 rounded-full border border-foreground/20 text-foreground/70 hover:border-gold hover:text-gold transition-colors"
+            className={`flex items-center gap-1.5 text-xs font-body font-semibold tracking-wide w-28 h-9 justify-center rounded-full border hover:border-gold hover:text-gold transition-colors ${scrolled ? "border-foreground/20 text-foreground/70" : "border-cream/40 text-cream/80"}`}
             title={language === "en" ? "Switch to Afrikaans" : "Switch to English"}
           >
             <Globe size={13} />
             {language === "en" ? "Afrikaans" : "English"}
           </button>
-          <Button variant="outline" size="default" onClick={onEnquire} className="border-foreground/30 text-foreground/80 hover:border-gold hover:text-gold">
+          <Button variant="outline" size="default" onClick={onEnquire} className={`w-28 h-9 hover:border-gold hover:text-gold ${scrolled ? "border-foreground/30 text-foreground/80" : "border-cream/50 text-cream bg-transparent hover:bg-transparent"}` }>
             Enquire
           </Button>
-          <Button variant="gold" size="default" onClick={onBookNow}>
+          <Button variant="gold" size="default" onClick={onBookNow} className="w-28 h-9">
             {t("nav.bookNow")}
           </Button>
         </div>
 
-        <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+        <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
+          {mobileOpen ? <X size={24} className={scrolled ? "text-foreground" : "text-cream"} /> : <Menu size={24} className={scrolled ? "text-foreground" : "text-cream"} />}
         </button>
       </div>
 

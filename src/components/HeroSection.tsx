@@ -50,13 +50,13 @@ const HeroSection = ({ onBookNow, onEnquire }: HeroSectionProps) => {
           {content.subheadline || "Experience the tranquil beauty and \"Olde World\" charm of Paul Roux's historic hidden gem."}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button variant="hero" size="lg" className="text-base w-52 h-14 bg-cream text-forest hover:bg-cream/90" onClick={scrollToRooms}>
+          <Button variant="hero" size="lg" className="text-base w-full sm:w-52 h-14 bg-cream text-forest hover:bg-cream/90" onClick={scrollToRooms}>
             {t("hero.viewRooms")}
           </Button>
-          <Button variant="heroOutline" size="lg" className="text-base w-52 h-14 border-cream text-cream hover:bg-cream hover:text-forest" onClick={onBookNow}>
+          <Button variant="heroOutline" size="lg" className="text-base w-full sm:w-52 h-14 border-cream text-cream hover:bg-cream hover:text-forest" onClick={onBookNow}>
             {t("hero.bookStay")}
           </Button>
-          <Button variant="heroOutline" size="lg" className="text-base w-52 h-14 border-gold text-gold hover:bg-gold hover:text-forest" onClick={onEnquire}>
+          <Button variant="heroOutline" size="lg" className="text-base w-full sm:w-52 h-14 border-gold text-gold hover:bg-gold hover:text-forest" onClick={onEnquire}>
             Send Enquiry
           </Button>
         </div>

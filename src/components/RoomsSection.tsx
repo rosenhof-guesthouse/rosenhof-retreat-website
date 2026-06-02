@@ -1,12 +1,15 @@
 import FadeIn from "@/components/FadeIn";
 import { Wifi, Coffee, TreePine, Tv, ShowerHead, Bath } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import honeymoonImg from "@/assets/room-honeymoon.jpg";
 import standardImg from "@/assets/room-standard.jpg";
 import gardenImg from "@/assets/amenities-garden.jpg";
 import { useRooms } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useRoomsSchema } from "@/hooks/useRoomsSchema";
+import { track } from "@/lib/track";
 
+const NIGHTSBRIDGE_URL = "https://book.nightsbridge.com/39887";
 const iconMap: Record<string, any> = { Wifi, Coffee, TreePine, Tv, ShowerHead, Bath };
 const fallbackImages = [honeymoonImg, standardImg, gardenImg];
 
@@ -65,6 +68,16 @@ const RoomsSection = () => {
                       <p className="text-xs text-muted-foreground mt-0.5">*Prices vary based on dates &amp; availability</p>
                       <p className="text-xs text-amber-600 font-medium mt-1">⚡ Prices may increase during peak dates &amp; weekends</p>
                     </div>
+                    <Button
+                      variant="gold"
+                      className="w-full mt-4"
+                      onClick={() => {
+                        track("book_now_click", { room: room.title });
+                        window.open(NIGHTSBRIDGE_URL, "_blank", "noopener,noreferrer");
+                      }}
+                    >
+                      Book This Room
+                    </Button>
                   </div>
                 </div>
               </FadeIn>

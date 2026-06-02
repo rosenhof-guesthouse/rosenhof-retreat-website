@@ -13,7 +13,15 @@ const StickyMobileActions = () => {
   const whatsapp = (content.whatsapp || phone).replace(/\D/g, "");
 
   return (
-    <div className="md:hidden fixed bottom-4 right-4 z-40 flex flex-col gap-3">
+    <div className="md:hidden fixed bottom-4 left-0 right-0 z-40 flex flex-row justify-between px-4">
+      <a
+        href={`tel:${phone}`}
+        aria-label="Call Rosenhof"
+        onClick={() => track("contact_click", { channel: "phone" })}
+        className="w-14 h-14 rounded-full bg-forest text-cream shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
+      >
+        <Phone size={24} />
+      </a>
       <a
         href={`https://wa.me/${whatsapp}`}
         target="_blank"
@@ -23,14 +31,6 @@ const StickyMobileActions = () => {
         className="w-14 h-14 rounded-full bg-[#25D366] text-white shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
       >
         <MessageCircle size={26} />
-      </a>
-      <a
-        href={`tel:${phone}`}
-        aria-label="Call Rosenhof"
-        onClick={() => track("contact_click", { channel: "phone" })}
-        className="w-14 h-14 rounded-full bg-forest text-cream shadow-xl flex items-center justify-center hover:scale-105 transition-transform"
-      >
-        <Phone size={24} />
       </a>
     </div>
   );
