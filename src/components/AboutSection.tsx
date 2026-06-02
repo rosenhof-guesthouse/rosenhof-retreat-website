@@ -27,17 +27,17 @@ const AboutSection = () => {
 
           <FadeIn delay={200}>
             <p className="text-sm tracking-[0.25em] uppercase text-gold font-body mb-3">
-              {t("about.tag")}
+              {tx(content.tag, language) || t("about.tag")}
             </p>
             <h2 className="text-3xl md:text-5xl font-display font-bold text-foreground leading-tight mb-6">
-              {content.headline || t("about.headline")}
+              {tx(content.headline, language) || t("about.headline")}
             </h2>
             <div className="w-16 h-0.5 bg-gold mb-8" />
             <p className="text-muted-foreground font-body text-lg leading-relaxed mb-6">
-              {content.paragraph_1 || t("about.paragraph_1")}
+              {tx(content.paragraph_1, language) || t("about.paragraph_1")}
             </p>
             <p className="text-muted-foreground font-body text-lg leading-relaxed">
-              {content.paragraph_2 || t("about.paragraph_2")}
+              {tx(content.paragraph_2, language) || t("about.paragraph_2")}
             </p>
           </FadeIn>
         </div>
