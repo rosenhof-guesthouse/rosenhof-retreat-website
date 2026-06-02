@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import weddingImg from "@/assets/events-wedding.jpg";
 import { useEventsContent } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
+import { tx } from "@/lib/contentTranslations";
 
 interface EventsSectionProps {
   onBookNow: () => void;
@@ -10,7 +11,7 @@ interface EventsSectionProps {
 
 const EventsSection = ({ onBookNow }: EventsSectionProps) => {
   const { content } = useEventsContent();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <section id="events" className="relative py-28 md:py-40 overflow-hidden">
