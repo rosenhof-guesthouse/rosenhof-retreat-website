@@ -89,6 +89,17 @@ const translations: Record<string, Record<Language, string>> = {
   "booking.submit": { en: "Submit Enquiry", af: "Dien Navraag In" },
   "booking.fillFields": { en: "Please fill in all required fields.", af: "Vul asseblief al die verpligte velde in." },
   "booking.success": { en: "Thank you! Your enquiry has been submitted. We'll be in touch shortly.", af: "Dankie! Jou navraag is ingedien. Ons sal binnekort in aanraking wees." },
+  "booking.rateLimited": { en: "Please wait a moment before sending another enquiry.", af: "Wag asseblief 'n oomblik voordat jy weer 'n navraag stuur." },
+  "booking.error": { en: "Something went wrong. Please try again.", af: "Iets het verkeerd geloop. Probeer asseblief weer." },
+  "booking.sending": { en: "Sending…", af: "Stuur tans…" },
+  "booking.namePlaceholder": { en: "Jane Smith", af: "Jana Smith" },
+  "booking.emailPlaceholder": { en: "jane@example.com", af: "jana@voorbeeld.com" },
+
+  // 404
+  "notFound.title": { en: "This path leads nowhere", af: "Hierdie pad lei nêrens heen" },
+  "notFound.body": { en: "The page you were looking for couldn't be found at Rosenhof.", af: "Die bladsy waarvoor jy soek, kon nie by Rosenhof gevind word nie." },
+  "notFound.goBack": { en: "Go Back", af: "Gaan Terug" },
+  "notFound.return": { en: "Return to Lodge", af: "Keer Terug na Herberg" },
 
   // Amenity icons
   "amenity.wifi": { en: "Free WiFi", af: "Gratis WiFi" },
