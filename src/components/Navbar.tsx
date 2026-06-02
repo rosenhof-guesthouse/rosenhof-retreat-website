@@ -102,7 +102,7 @@ const Navbar = ({ onBookNow, onEnquire }: NavbarProps) => {
                 {language === "en" ? "Afrikaans" : "English"}
               </button>
               <Button variant="outline" className="flex-1 border-foreground/30" onClick={() => { setMobileOpen(false); onEnquire(); }}>
-                Enquire
+                {t("nav.enquire")}
               </Button>
               <Button variant="gold" className="flex-1" onClick={() => { setMobileOpen(false); onBookNow(); }}>
                 {t("nav.bookNow")}
