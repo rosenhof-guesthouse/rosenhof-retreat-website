@@ -136,7 +136,7 @@ const BookingModal = ({ open, onOpenChange }: BookingModalProps) => {
             />
           </div>
           <Button type="submit" variant="hero" size="lg" className="w-full" disabled={submitting}>
-            {submitting ? "Sending…" : t("booking.submit")}
+            {submitting ? t("booking.sending") : t("booking.submit")}
           </Button>
         </form>
       </DialogContent>
