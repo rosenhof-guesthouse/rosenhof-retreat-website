@@ -3,15 +3,16 @@ import restaurantImg from "@/assets/restaurant.jpg";
 import { UtensilsCrossed, Flame, Wine } from "lucide-react";
 import { useDiningContent } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
+import { tx } from "@/lib/contentTranslations";
 
 const DiningSection = () => {
   const { content } = useDiningContent();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const features = [
-    { icon: UtensilsCrossed, label: content.feature_1 || t("dining.breakfast") },
-    { icon: Flame, label: content.feature_2 || t("dining.braai") },
-    { icon: Wine, label: content.feature_3 || t("dining.bar") },
+    { icon: UtensilsCrossed, label: tx(content.feature_1, language) || t("dining.breakfast") },
+    { icon: Flame, label: tx(content.feature_2, language) || t("dining.braai") },
+    { icon: Wine, label: tx(content.feature_3, language) || t("dining.bar") },
   ];
 
   return (
