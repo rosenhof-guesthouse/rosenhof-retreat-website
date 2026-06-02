@@ -7,6 +7,7 @@ import gardenImg from "@/assets/amenities-garden.jpg";
 import { useRooms } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
 import { useRoomsSchema } from "@/hooks/useRoomsSchema";
+import { tx } from "@/lib/contentTranslations";
 import { track } from "@/lib/track";
 
 const NIGHTSBRIDGE_URL = "https://book.nightsbridge.com/39887";
