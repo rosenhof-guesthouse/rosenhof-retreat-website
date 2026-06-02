@@ -2,6 +2,7 @@ import { MapPin, Phone, Mail, PawPrint } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
+import { tx } from "@/lib/contentTranslations";
 
 const WhatsAppIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -11,7 +12,7 @@ const WhatsAppIcon = () => (
 
 const Footer = () => {
   const { content } = useSiteContent("footer");
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <footer id="contact" className="bg-forest text-cream py-16">
@@ -24,7 +25,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-2 text-cream/70 text-sm mb-2">
               <PawPrint size={16} className="text-gold" />
-              <span>{content.pet_policy || t("footer.petPolicy")}</span>
+              <span>{tx(content.pet_policy, language) || t("footer.petPolicy")}</span>
             </div>
           </div>
 
