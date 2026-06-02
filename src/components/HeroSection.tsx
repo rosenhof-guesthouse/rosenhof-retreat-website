@@ -57,7 +57,7 @@ const HeroSection = ({ onBookNow, onEnquire }: HeroSectionProps) => {
             {t("hero.bookStay")}
           </Button>
           <Button variant="heroOutline" size="lg" className="text-base w-full sm:w-52 h-14 border-gold text-gold hover:bg-gold hover:text-forest" onClick={onEnquire}>
-            Send Enquiry
+            {t("hero.sendEnquiry")}
           </Button>
         </div>
       </div>
