@@ -47,8 +47,8 @@ const RoomsSection = () => {
                     />
                   </div>
                   <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="font-display text-xl font-semibold text-foreground mb-3">{room.title}</h3>
-                    <p className="text-muted-foreground font-body leading-relaxed flex-1">{room.description}</p>
+                    <h3 className="font-display text-xl font-semibold text-foreground mb-3">{tx(room.title, language)}</h3>
+                    <p className="text-muted-foreground font-body leading-relaxed flex-1">{tx(room.description, language)}</p>
                     {features.length > 0 && (
                       <div className="flex gap-6 mt-4 pt-4 border-t border-border">
                         {features.map((f: any) => {
@@ -56,7 +56,7 @@ const RoomsSection = () => {
                           return (
                             <div key={f.label} className="flex items-center gap-2 text-sm text-muted-foreground">
                               {Icon && <Icon size={18} className="text-gold" />}
-                              <span>{f.label}</span>
+                              <span>{tx(f.label, language)}</span>
                             </div>
                           );
                         })}
