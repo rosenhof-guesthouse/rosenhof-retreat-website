@@ -63,13 +63,13 @@ const Navbar = ({ onBookNow, onEnquire }: NavbarProps) => {
           <button
             onClick={toggleLang}
             className={`flex items-center gap-1.5 text-xs font-body font-semibold tracking-wide w-28 h-9 justify-center rounded-full border hover:border-gold hover:text-gold transition-colors ${scrolled ? "border-foreground/20 text-foreground/70" : "border-cream/40 text-cream/80"}`}
-            title={language === "en" ? "Switch to Afrikaans" : "Switch to English"}
+            title={language === "en" ? t("nav.switchToAf") : t("nav.switchToEn")}
           >
             <Globe size={13} />
             {language === "en" ? "Afrikaans" : "English"}
           </button>
           <Button variant="outline" size="default" onClick={onEnquire} className={`w-28 h-9 hover:border-gold hover:text-gold ${scrolled ? "border-foreground/30 text-foreground/80" : "border-cream/50 text-cream bg-transparent hover:bg-transparent"}` }>
-            Enquire
+            {t("nav.enquire")}
           </Button>
           <Button variant="gold" size="default" onClick={onBookNow} className="w-28 h-9">
             {t("nav.bookNow")}
