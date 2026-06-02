@@ -78,7 +78,7 @@ const Footer = () => {
         {/* Google Maps embed — directions to the lodge */}
         <div className="mt-12 rounded-lg overflow-hidden border border-cream/15 shadow-lg">
           <iframe
-            title="Rosenhof Exclusive Country Lodge — Map"
+            title={t("footer.mapTitle")}
             src="https://www.google.com/maps?q=18+Market+St,+Paul+Roux,+9800,+South+Africa&output=embed"
             width="100%"
             height="280"
@@ -94,7 +94,7 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-cream text-sm font-body hover:text-gold transition-colors underline"
             >
-              Get directions →
+              {t("footer.getDirections")}
             </a>
           </div>
         </div>
