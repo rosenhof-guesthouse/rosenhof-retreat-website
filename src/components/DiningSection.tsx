@@ -42,12 +42,18 @@ const DiningSection = () => {
             <div className="w-16 h-0.5 bg-gold mb-8" />
             <p className="text-muted-foreground font-body text-lg leading-relaxed mb-8">
               {content.description ? (
-                <span dangerouslySetInnerHTML={{
-                  __html: tx(content.description, language).replace(
-                    "Rock Restaurant & Bar",
-                    '<strong class="text-foreground">Rock Restaurant & Bar</strong>'
-                  )
-                }} />
+                (() => {
+                  const text = tx(content.description, language);
+                  const brand = "Rock Restaurant & Bar";
+                  const parts = text.split(brand);
+                  return parts.length > 1
+                    ? parts.flatMap((part, i) =>
+                        i < parts.length - 1
+                          ? [part, <strong key={i} className="text-foreground">{brand}</strong>]
+                          : [part]
+                      )
+                    : text;
+                })()
               ) : (
                 <>{t("dining.description")}</>
               )}
