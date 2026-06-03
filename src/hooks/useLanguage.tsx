@@ -16,6 +16,7 @@ const translations: Record<string, Record<Language, string>> = {
   "nav.events": { en: "Events", af: "Geleenthede" },
   "nav.contact": { en: "Contact", af: "Kontak" },
   "nav.bookNow": { en: "Book Now", af: "Bespreek Nou" },
+  "nav.enquire": { en: "Enquire", af: "Navraag" },
 
   // Hero
   "hero.viewRooms": { en: "View Our Rooms", af: "Bekyk Ons Kamers" },
