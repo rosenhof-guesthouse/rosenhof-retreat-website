@@ -76,13 +76,19 @@ const Navbar = ({ onBookNow, onEnquire }: NavbarProps) => {
           </Button>
         </div>
 
-        <button className="md:hidden" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button
+          className="md:hidden"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          aria-label={mobileOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-nav"
+        >
           {mobileOpen ? <X size={24} className={scrolled ? "text-foreground" : "text-cream"} /> : <Menu size={24} className={scrolled ? "text-foreground" : "text-cream"} />}
         </button>
       </div>
 
       {mobileOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur border-t border-border">
+        <div id="mobile-nav" className="md:hidden bg-background/95 backdrop-blur border-t border-border">
           <div className="flex flex-col p-4 gap-3">
             {links.map((l) => (
               <button

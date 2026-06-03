@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const TermsOfService = () => (
   <div className="min-h-screen bg-background py-16 px-4">
+    <Helmet>
+      <title>Terms of Service — Rosenhof Country Lodge</title>
+      <meta name="description" content="Terms governing bookings, pricing, cancellations, and guest responsibilities at Rosenhof Exclusive Country Lodge." />
+      <link rel="canonical" href="https://rosenhofcountrylodge.co.za/terms" />
+      <meta property="og:title" content="Terms of Service — Rosenhof Country Lodge" />
+      <meta property="og:description" content="Booking, pricing, and cancellation terms for Rosenhof Exclusive Country Lodge." />
+      <meta property="og:url" content="https://rosenhofcountrylodge.co.za/terms" />
+    </Helmet>
     <div className="max-w-3xl mx-auto">
       <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors">
         <ArrowLeft size={16} /> Back to Home
