@@ -42,7 +42,7 @@ const keyLabels: Record<string, string> = {
   feature_3: "Feature 3",
 };
 
-const IMAGE_SECTIONS = ["about"];
+const IMAGE_SECTIONS = ["about", "hero"];
 
 const getStoragePath = (url: string) => url.split("/site-images/")[1];
 
@@ -83,22 +83,27 @@ const ContentEditorPage = () => {
     setUploadingSection(section);
     try {
       const compressed = await compressImage(file);
-      // Delete old image if exists
       const existing = content.find((c) => c.section === section && c.content_key === "image_url");
       if (existing?.content_value) {
         const path = getStoragePath(existing.content_value);
         if (path) await supabase.storage.from("site-images").remove([path]);
       }
-      // Upload new image
       const path = `${section}-${crypto.randomUUID()}.jpg`;
       const { error: uploadError } = await supabase.storage.from("site-images").upload(path, compressed);
       if (uploadError) { toast.error("Upload failed"); return; }
       const { data } = supabase.storage.from("site-images").getPublicUrl(path);
-      // Save URL to correct table
       if (existing) {
         const table = section === "dining" ? "dining_content" : "site_content";
         await supabase.from(table).update({ content_value: data.publicUrl }).eq("id", existing.id);
         setContent((prev) => prev.map((c) => c.id === existing.id ? { ...c, content_value: data.publicUrl } : c));
+      } else {
+        // Row doesn't exist yet — insert it
+        const { data: inserted } = await supabase
+          .from("site_content")
+          .insert({ section, content_key: "image_url", content_value: data.publicUrl })
+          .select()
+          .single();
+        if (inserted) setContent((prev) => [...prev, { ...inserted, section }]);
       }
       toast.success("Image updated");
     } catch {
