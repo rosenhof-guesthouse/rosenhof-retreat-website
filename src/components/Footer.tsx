@@ -2,7 +2,6 @@ import { MapPin, Phone, Mail, PawPrint } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSiteContent } from "@/hooks/useSiteContent";
 import { useLanguage } from "@/hooks/useLanguage";
-import { tx } from "@/lib/contentTranslations";
 
 const WhatsAppIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
@@ -12,7 +11,7 @@ const WhatsAppIcon = () => (
 
 const Footer = () => {
   const { content } = useSiteContent("footer");
-  const { t, language } = useLanguage();
+  const { t } = useLanguage();
 
   return (
     <footer id="contact" className="bg-forest text-cream py-16">
@@ -25,7 +24,7 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-2 text-cream/70 text-sm mb-2">
               <PawPrint size={16} className="text-gold" />
-              <span>{tx(content.pet_policy, language) || t("footer.petPolicy")}</span>
+              <span>{content.pet_policy || t("footer.petFriendly")}</span>
             </div>
           </div>
 
@@ -79,7 +78,7 @@ const Footer = () => {
         {/* Google Maps embed — directions to the lodge */}
         <div className="mt-12 rounded-lg overflow-hidden border border-cream/15 shadow-lg">
           <iframe
-            title={t("footer.mapTitle")}
+            title="Rosenhof Exclusive Country Lodge — Map"
             src="https://www.google.com/maps?q=18+Market+St,+Paul+Roux,+9800,+South+Africa&output=embed"
             width="100%"
             height="280"
@@ -95,29 +94,29 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="text-cream text-sm font-body hover:text-gold transition-colors underline"
             >
-              {t("footer.getDirections")}
+              {t("footer.directions")}
             </a>
           </div>
         </div>
 
 
         <div className="border-t border-cream/15 mt-12 pt-8 space-y-3 text-center">
-          <div className="flex items-center justify-center gap-4 text-cream/40 text-xs font-body">
+          <div className="flex items-center justify-center gap-4 text-white text-xs font-body">
             <Link to="/privacy" className="hover:text-gold transition-colors underline">{t("footer.privacy")}</Link>
             <span>·</span>
             <Link to="/terms" className="hover:text-gold transition-colors underline">{t("footer.terms")}</Link>
           </div>
-          <p className="text-cream/50 text-xs font-body">
+          <p className="text-white text-xs font-body">
             &copy; {new Date().getFullYear()} Rosenhof Exclusive Country Lodge. {t("footer.rights")}
           </p>
           <a
             href="https://astartechnologies.co.za"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-cream/40 text-xs font-body hover:text-gold transition-colors underline"
+            className="inline-flex items-center gap-1.5 text-white text-xs font-body hover:text-gold transition-colors underline"
           >
             <WhatsAppIcon />
-            {t("footer.designedBy")}
+            {t("footer.credit")}
           </a>
         </div>
       </div>
