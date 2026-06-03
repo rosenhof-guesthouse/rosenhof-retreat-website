@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -28,6 +29,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <link rel="canonical" href="https://rosenhofcountrylodge.co.za/" />
+      </Helmet>
       <Navbar onBookNow={openNightsbridge} onEnquire={openEnquire} />
       <HeroSection onBookNow={openNightsbridge} onEnquire={openEnquire} />
       <AboutSection />

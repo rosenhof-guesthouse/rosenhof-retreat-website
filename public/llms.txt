@@ -1,0 +1,11 @@
+# Rosenhof Exclusive Country Lodge
+
+> Heritage boutique country lodge in Paul Roux, Eastern Free State, South Africa. Olde World charm, country hospitality, dining, and event hosting.
+
+Rosenhof is a century-old historic lodge offering en-suite rooms, a country restaurant, and venue space for weddings, conferences and private events. The site is bilingual (English and Afrikaans) and accepts booking enquiries online.
+
+## Pages
+
+- [Home](/): Overview of the lodge, rooms, dining, events, and contact details.
+- [Privacy Policy](/privacy): How personal information is collected and protected under POPIA.
+- [Terms of Service](/terms): Booking, pricing, and cancellation terms.

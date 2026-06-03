@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
+import { Helmet } from "react-helmet-async";
 
 const PrivacyPolicy = () => (
   <div className="min-h-screen bg-background py-16 px-4">
+    <Helmet>
+      <title>Privacy Policy — Rosenhof Country Lodge</title>
+      <meta name="description" content="How Rosenhof Exclusive Country Lodge collects, uses, and protects your personal information under POPIA." />
+      <link rel="canonical" href="https://rosenhofcountrylodge.co.za/privacy" />
+      <meta property="og:title" content="Privacy Policy — Rosenhof Country Lodge" />
+      <meta property="og:description" content="How we collect, use, and protect your personal information under POPIA." />
+      <meta property="og:url" content="https://rosenhofcountrylodge.co.za/privacy" />
+    </Helmet>
     <div className="max-w-3xl mx-auto">
       <Link to="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8 transition-colors">
         <ArrowLeft size={16} /> Back to Home
